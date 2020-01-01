@@ -1,0 +1,27 @@
+{
+  "name": "microservice_rabbitmq",
+  "version": "1.0.0",
+  "description": "microservice rabbit mysql",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "keywords": [
+    "rabbit",
+    "nestjs",
+    "mysql",
+    "miscroservice"
+  ],
+  "author": "k.kodieaddo@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "@types/amqplib": "^0.5.13",
+    "amqplib": "^0.5.5"
+  },
+  "devDependencies": {
+    "ts-node": "^8.5.4",
+    "typescript": "^3.7.4",
+    "@types/node": "^12.12.21"
+  }
+}
