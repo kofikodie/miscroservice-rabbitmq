@@ -10,3 +10,4 @@ commander.command("send")
     .action(() => {
         console.log("have send it")
     });
+commander.parse(process.argv);
