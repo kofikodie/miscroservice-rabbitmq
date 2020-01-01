@@ -3,6 +3,6 @@ WORKDIR /usr/src/app
 COPY package.json .
 # Install all Packages
 RUN npm install
-ADD ./reciver /usr/src/app
+ADD ./receiver /usr/src/app
 ADD tsconfig.json /usr/src/app
 RUN npm run build
