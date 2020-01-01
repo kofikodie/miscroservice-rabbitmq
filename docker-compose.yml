@@ -1,0 +1,19 @@
+version: "3.7"
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+  sender:
+    build:
+      context: .
+      dockerfile: .docker/sender/Dockerfile
+    depends_on:
+      - rabbitmq
+  reciver:
+    build:
+      context: .
+      dockerfile: .docker/reciver/Dockerfile
+    depends_on:
+      - rabbitmq
