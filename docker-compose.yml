@@ -16,6 +16,6 @@ services:
     image: reciver:v1
     build:
       context: .
-      dockerfile: .docker/reciver/Dockerfile
+      dockerfile: .docker/receiver/Dockerfile
     depends_on:
       - rabbitmq
