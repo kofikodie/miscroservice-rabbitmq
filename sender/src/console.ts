@@ -1,5 +1,6 @@
 import commander from "commander";
 import dotenv from "dotenv";
+import { Send } from "../config/Send";
 
 dotenv.config();
 
@@ -9,6 +10,8 @@ commander
   .alias("s")
   .description("am the sender")
   .action(() => {
-    console.log("have send it");
+    let sender;
+    sender = new Send();
+    sender.connect();
   });
 commander.parse(process.argv);
