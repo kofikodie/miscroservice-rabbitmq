@@ -4,11 +4,11 @@
   "description": "microservice rabbit mysql",
   "main": "index.js",
   "scripts": {
-    "pretty": "prettier --write **/*.ts",
+    "pretty": "prettier --write **/sender/config/*.ts",
     "lint": "tslint */*.ts",
     "test-dev": "test-npm-dependants commander 4.0.1",
     "build": "tsc",
-    "start": "ts-node console.ts send"
+    "start": "ts-node sender/console.ts send"
   },
   "keywords": [
     "rabbit",
@@ -18,7 +18,7 @@
   "author": "k.kodieaddo@gmail.com",
   "license": "ISC",
   "dependencies": {
-    "amqp-ts": "^1.8.0",
+    "amqplib": "^0.5.5",
     "commander": "^4.0.1",
     "dotenv": "^8.2.0"
   },
