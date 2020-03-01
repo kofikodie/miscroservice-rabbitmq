@@ -1,11 +1,11 @@
-import amqp from "amqp-ts";
+import * as Amqp from "amqp-ts";
 import { SendConfigInterface } from "./SendConfigInterface";
 
 require("dotenv").config();
 
 export class Send implements SendConfigInterface {
   connect(): void {
-    const connection = new amqp.Connection(
+    const connection = new Amqp.Connection(
       `amqp://${process.env.RABBITMQ_USER}:${process.env.RABBITMQ_PASSWORD}@${process.env.RABBITMQ_HOST}:${process.env.RABBITMQ_PORT}${process.env.RABBITMQ_VHOST}`
     );
     const exchange = connection.declareExchange(
@@ -36,10 +36,10 @@ export class Send implements SendConfigInterface {
     queue2.bind(exchange);
 
     connection.completeConfiguration().then(() => {
-      const message = new amqp.Message("Hello queues");
+      const message = new Amqp.Message("Hello queues");
       exchange.send(message);
     });
 
-    connection.close().then(console.log("Closing channel"));
+    connection.close().then(r => console.log("closing connection"));
   }
 }
