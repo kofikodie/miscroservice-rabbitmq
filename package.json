@@ -23,6 +23,8 @@
     "dotenv": "^8.2.0"
   },
   "devDependencies": {
+    "@types/amqplib": "^0.5.13",
+    "@types/bluebird": "^3.5.29",
     "@types/node": "^12.12.21",
     "prettier": "^1.19.1",
     "test-npm-dependants": "^1.0.0",

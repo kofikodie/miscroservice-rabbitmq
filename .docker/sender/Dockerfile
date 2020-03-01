@@ -1,8 +1,8 @@
 FROM node:12-alpine
-WORKDIR /usr/src/app
+WORKDIR /usr/src/sender
 COPY package.json .
 # Install all Packages
 RUN npm install
-ADD ./sender/ /usr/src/app
-ADD tsconfig.json /usr/src/app
+ADD ./sender/ /usr/src/sender
+ADD tsconfig.json /usr/src/sender
 RUN npm run build
