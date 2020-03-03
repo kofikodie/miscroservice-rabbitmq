@@ -9,10 +9,11 @@ commander.version("beta").description("i send stuff to rabbit");
 commander
   .command("send")
   .alias("s")
+  .arguments('<message>')
   .description("am the sender")
-  .action(() => {
+  .action((message: string) => {
     let sender: SendConfigInterface;
     sender = new Send();
-    sender.connect();
+    sender.connect(message);
   });
 commander.parse(process.argv);

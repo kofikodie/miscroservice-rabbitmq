@@ -1,3 +1,3 @@
 export interface SendConfigInterface {
-  connect(): void;
+  connect(message?: string): void;
 }

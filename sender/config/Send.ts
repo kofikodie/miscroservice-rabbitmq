@@ -7,7 +7,7 @@ import AssertQueue = Replies.AssertQueue;
 require("dotenv").config();
 
 export class Send implements SendConfigInterface {
-  connect(): void {
+  connect(message?: string): void {
     amqp.connect(
       {
         protocol: process.env.RABBITMQ_PROTOCOL,
@@ -40,14 +40,10 @@ export class Send implements SendConfigInterface {
               ch.bindQueue(q.queue, process.env.RABBITMQ_WORKER_EXCHANGE, "");
             }
           );
-          ch.sendToQueue(
-            process.env.RABBITMQ_QUEUE_ONE,
-            Buffer.from("hello motherfather"),
-            {
-              persistent: true
-            }
-          );
-          console.log(" [x] Sent hello motherfather");
+          ch.sendToQueue(process.env.RABBITMQ_QUEUE_ONE, Buffer.from(message), {
+            persistent: true
+          });
+          console.log(`[x] Sent hello ${message}`);
         });
       }
     );
