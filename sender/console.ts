@@ -14,6 +14,6 @@ commander
   .action((message: string) => {
     let sender: SendConfigInterface;
     sender = new Send();
-    sender.connect(message);
+    sender.publisher(message);
   });
 commander.parse(process.argv);

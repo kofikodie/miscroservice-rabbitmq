@@ -7,7 +7,7 @@ import AssertQueue = Replies.AssertQueue;
 require("dotenv").config();
 
 export class Send implements SendConfigInterface {
-  connect(message?: string): void {
+  publisher(message?: string): void {
     amqp.connect(
       {
         protocol: process.env.RABBITMQ_PROTOCOL,

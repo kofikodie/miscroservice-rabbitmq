@@ -1,3 +1,3 @@
 export interface SendConfigInterface {
-  connect(message?: string): void;
+  publisher(message?: string): void;
 }
