@@ -40,7 +40,26 @@ export class Send implements SendConfigInterface {
               ch.bindQueue(q.queue, process.env.RABBITMQ_WORKER_EXCHANGE, "");
             }
           );
+          ch.assertQueue(
+            process.env.RABBITMQ_QUEUE_SEC,
+            {
+              durable: true,
+              exclusive: false,
+              autoDelete: false,
+              arguments: null
+            },
+            (err, q: AssertQueue) => {
+              console.log(
+                " [*] Waiting for messages in %s. To exit press CTRL+C",
+                q.queue
+              );
+              ch.bindQueue(q.queue, process.env.RABBITMQ_WORKER_EXCHANGE, "");
+            }
+          );
           ch.sendToQueue(process.env.RABBITMQ_QUEUE_ONE, Buffer.from(message), {
+            persistent: true
+          });
+          ch.sendToQueue(process.env.RABBITMQ_QUEUE_SEC, Buffer.from(message), {
             persistent: true
           });
           console.log(`[x] Sent hello ${message}`);
