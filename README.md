@@ -2,6 +2,6 @@
 Trying RabbitMQ with the [RabbitMQ and Messaging Concepts](https://www.udemy.com/course/rabbitmq-and-messaging-concepts/) tutorial
 
 ## Usage
-To get started switch o one of the available branch:
+To get started switch to one of the available branch:
 - fanout
 
