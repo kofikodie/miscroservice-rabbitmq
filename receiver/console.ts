@@ -1,5 +1,5 @@
 import commander from "commander";
-import {Consume} from "./config/Consume"
+import { Receive } from "./config/Receive";
 
 commander.version("beta").description("i receive stuff");
 commander
@@ -7,9 +7,6 @@ commander
   .alias("r")
   .description("am the receiver")
   .action(() => {
-    let consume = new Consume();
-    let message: string;
-    message = consume.consumer();
-    console.log(message)
+    new Receive().receiver();
   });
 commander.parse(process.argv);

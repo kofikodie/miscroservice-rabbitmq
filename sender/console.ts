@@ -9,7 +9,7 @@ commander.version("beta").description("i send stuff to rabbit");
 commander
   .command("send")
   .alias("s")
-  .arguments('<message>')
+  .arguments("<message>")
   .description("am the sender")
   .action((message: string) => {
     let sender: SendConfigInterface;
