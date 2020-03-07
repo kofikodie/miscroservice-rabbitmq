@@ -4,7 +4,7 @@
   "description": "microservice rabbit mysql",
   "main": "index.js",
   "scripts": {
-    "pretty": "prettier --write **/sender/config/*.ts",
+    "pretty": "prettier --write **/receiver/config/*.ts",
     "lint": "tslint */*.ts",
     "test-dev": "test-npm-dependants commander 4.0.1",
     "build": "tsc",
