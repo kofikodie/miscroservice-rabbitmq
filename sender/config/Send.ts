@@ -39,10 +39,6 @@ export class Send implements SendConfigInterface {
               arguments: null
             },
             (err, q: AssertQueue) => {
-              console.log(
-                " [*] Waiting for messages in %s. To exit press CTRL+C",
-                q.queue
-              );
               ch.bindQueue(q.queue, process.env.RABBITMQ_WORKER_EXCHANGE, "");
             }
           );
@@ -55,10 +51,6 @@ export class Send implements SendConfigInterface {
               arguments: null
             },
             (err, q: AssertQueue) => {
-              console.log(
-                " [*] Waiting for messages in %s. To exit press CTRL+C",
-                q.queue
-              );
               ch.bindQueue(q.queue, process.env.RABBITMQ_WORKER_EXCHANGE, "");
             }
           );
@@ -68,7 +60,7 @@ export class Send implements SendConfigInterface {
           ch.sendToQueue(process.env.RABBITMQ_QUEUE_SEC, Buffer.from(message), {
             persistent: true
           });
-          console.log(`[x] Sent hello ${message}`);
+          console.log(`[x] Sent ${message}`);
         });
       }
     );
