@@ -36,11 +36,8 @@ export class Receive implements ReceiverInterface {
             process.env.RABBITMQ_QUEUE_ONE,
             msg => {
               console.log(" [x] Received %s", msg.content.toString());
-              ch.ack(msg);
+              ch.ack(msg, false);
             },
-            {
-              noAck: false
-            }
           );
         });
       }
