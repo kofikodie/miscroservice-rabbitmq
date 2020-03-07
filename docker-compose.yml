@@ -10,8 +10,6 @@ services:
     build:
       context: .
       dockerfile: .docker/sender/Dockerfile
-    ports:
-    - "5858:5858"
     volumes:
       - "./:/usr/src/sender"
     depends_on:
@@ -21,5 +19,7 @@ services:
     build:
       context: .
       dockerfile: .docker/receiver/Dockerfile
+    volumes:
+      - "./:/usr/src/sender"
     depends_on:
       - rabbitmq
