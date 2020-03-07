@@ -18,7 +18,13 @@ export class Send implements SendConfigInterface {
         vhost: process.env.RABBITMQ_VHOST
       },
       (err: ClientHttp2Session, conn) => {
+        if (err) {
+          throw err;
+        }
         conn.createChannel((err, ch) => {
+          if (err) {
+            throw err;
+          }
           ch.assertExchange(process.env.RABBITMQ_WORKER_EXCHANGE, "fanout", {
             durable: true,
             autoDelete: false,
