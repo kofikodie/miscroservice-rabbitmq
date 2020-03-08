@@ -7,6 +7,6 @@ commander
   .alias("r")
   .description("am the receiver")
   .action(() => {
-    new Receive().receiver();
+    new Receive().receiver().then(r => console.log("closing connection"));
   });
 commander.parse(process.argv);

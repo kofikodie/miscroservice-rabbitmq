@@ -14,6 +14,6 @@ commander
   .action((message: string) => {
     let sender: SendConfigInterface;
     sender = new Send();
-    sender.publisher(message).then(r => console.log(`Send ${message}`));
+    sender.publisher(message).then(r => console.log(`[x] Send ${message}`));
   });
 commander.parse(process.argv);
