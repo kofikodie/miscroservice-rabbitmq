@@ -11,9 +11,9 @@ commander
   .alias("s")
   .arguments("<message>")
   .description("am the sender")
-  .action((message: string) => {
+  .action( (message: string) => {
     let sender: SendConfigInterface;
     sender = new Send();
-    sender.publisher(message);
+    sender.publisher(message).then(r => console.log(`Send ${message}`));
   });
 commander.parse(process.argv);

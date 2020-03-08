@@ -8,7 +8,7 @@
     "lint": "tslint */*.ts",
     "test-dev": "test-npm-dependants commander 4.0.1",
     "build": "tsc",
-    "send": "ts-node sender/console.ts send hello-rabbitMQ",
+    "send": "ts-node sender/console.ts send hello-info",
     "consume": "ts-node receiver/console.ts receive"
   },
   "keywords": [
