@@ -4,4 +4,5 @@ Trying RabbitMQ with the [RabbitMQ and Messaging Concepts](https://www.udemy.com
 ## Usage
 To get started switch to one of the available branch:
 - fanout
+- direct
 
