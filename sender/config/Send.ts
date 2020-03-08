@@ -22,17 +22,26 @@ export class Send implements SendConfigInterface {
         arguments: null
       }
     );
-    const queueAssert = await channel.assertQueue(process.env.RABBITMQ_QUEUE_ONE, {
-      durable: true,
-      exclusive: false,
-      autoDelete: false,
-      arguments: null
-    });
-    await channel.bindQueue(queueAssert.queue, process.env.RABBITMQ_WORKER_EXCHANGE, "info");
+    const queueAssert = await channel.assertQueue(
+      process.env.RABBITMQ_QUEUE_ONE,
+      {
+        durable: true,
+        exclusive: false,
+        autoDelete: false,
+        arguments: null
+      }
+    );
+    await channel.bindQueue(
+      queueAssert.queue,
+      process.env.RABBITMQ_WORKER_EXCHANGE,
+      "info"
+    );
     await channel.publish(
       process.env.RABBITMQ_WORKER_EXCHANGE,
       "info",
       Buffer.from(message)
     );
+    await channel.close();
+    await connection.close();
   }
 }
