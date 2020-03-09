@@ -22,7 +22,7 @@ export class Send implements SendConfigInterface {
         arguments: null
       }
     );
-    const queueAssert = await channel.assertQueue(
+    const queueOne = await channel.assertQueue(
       process.env.RABBITMQ_QUEUE_ONE,
       {
         durable: true,
@@ -31,14 +31,29 @@ export class Send implements SendConfigInterface {
         arguments: null
       }
     );
+    const queueSec = await channel.assertQueue(
+      process.env.RABBITMQ_QUEUE_SEC,
+      {
+        durable: true,
+        exclusive: false,
+        autoDelete: false,
+        arguments: null
+      }
+    );
     await channel.bindQueue(
-      queueAssert.queue,
+      queueOne.queue,
       process.env.RABBITMQ_WORKER_EXCHANGE,
       "info"
     );
+
+    await channel.bindQueue(
+      queueSec.queue,
+      process.env.RABBITMQ_WORKER_EXCHANGE,
+      "warning"
+    );
     await channel.publish(
       process.env.RABBITMQ_WORKER_EXCHANGE,
-      "info",
+      "warning",
       Buffer.from(message)
     );
     await channel.close();
