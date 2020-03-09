@@ -1,8 +1,5 @@
 import amqp, { Channel, Connection } from "amqplib";
 import { SendConfigInterface } from "./SendConfigInterface";
-import { ClientHttp2Session } from "http2";
-import { Replies } from "amqplib";
-import AssertQueue = Replies.AssertQueue;
 
 require("dotenv").config();
 
