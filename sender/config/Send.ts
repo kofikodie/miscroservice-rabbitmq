@@ -16,37 +16,56 @@ export class Send implements SendConfigInterface {
     const channel: Channel = await connection.createChannel();
     await channel.assertExchange(
       process.env.RABBITMQ_WORKER_EXCHANGE,
-      "fanout",
+      "topic",
       {
         durable: true,
-        autoDelete: false,
-        arguments: null
+        autoDelete: false
       }
     );
     await channel.assertQueue(process.env.RABBITMQ_QUEUE_ONE, {
       durable: true,
       exclusive: false,
-      autoDelete: false,
-      arguments: null
+      autoDelete: false
+    });
+    await channel.assertQueue(process.env.RABBITMQ_QUEUE_SEC, {
+      durable: true,
+      exclusive: false,
+      autoDelete: false
+    });
+    await channel.assertQueue(process.env.RABBITMQ_QUEUE_THR, {
+      durable: true,
+      exclusive: false,
+      autoDelete: false
     });
     await channel.bindQueue(
       process.env.RABBITMQ_QUEUE_ONE,
       process.env.RABBITMQ_WORKER_EXCHANGE,
-      ""
+      "*.image.*"
     );
-    await channel.sendToQueue(
-      process.env.RABBITMQ_QUEUE_ONE,
-      Buffer.from(message),
-      {
-        persistent: true
-      }
-    );
-    await channel.sendToQueue(
+    await channel.bindQueue(
       process.env.RABBITMQ_QUEUE_SEC,
-      Buffer.from(message),
-      {
-        persistent: true
-      }
+      process.env.RABBITMQ_WORKER_EXCHANGE,
+      "#.image"
+    );
+    await channel.bindQueue(
+      process.env.RABBITMQ_QUEUE_THR,
+      process.env.RABBITMQ_WORKER_EXCHANGE,
+      "image.#"
+    );
+    await channel.publish(
+      process.env.RABBITMQ_WORKER_EXCHANGE,
+      "convert.image.bmp",
+      Buffer.from(message)
+    );
+    await channel.publish(
+      process.env.RABBITMQ_WORKER_EXCHANGE,
+      "convert.bitmap.image",
+      Buffer.from(message)
+    );
+    await channel.publish(
+      process.env.RABBITMQ_WORKER_EXCHANGE,
+      "image.converted",
+      Buffer.from(message)
     );
     await channel.close();
     await connection.close();
