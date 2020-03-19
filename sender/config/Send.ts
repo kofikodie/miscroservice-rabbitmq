@@ -1,11 +1,11 @@
-import amqp, { Channel, Connection } from "amqplib";
+import amqp from "amqplib";
 import { SendConfigInterface } from "./SendConfigInterface";
 
 require("dotenv").config();
 
 export class Send implements SendConfigInterface {
   async publisher(message?: string): Promise<void> {
-    const connection: Connection = await amqp.connect({
+    const connection = await amqp.connect({
       protocol: process.env.RABBITMQ_PROTOCOL,
       hostname: process.env.RABBITMQ_HOST,
       port: parseInt(process.env.RABBITMQ_PORT),
@@ -13,15 +13,11 @@ export class Send implements SendConfigInterface {
       password: process.env.RABBITMQ_PASSWORD,
       vhost: process.env.RABBITMQ_VHOST
     });
-    const channel: Channel = await connection.createChannel();
-    await channel.assertExchange(
-      process.env.RABBITMQ_WORKER_EXCHANGE,
-      "topic",
-      {
-        durable: true,
-        autoDelete: false
-      }
-    );
+    const channel = await connection.createChannel();
+    await channel.assertExchange(process.env.RABBITMQ_WORKER_EXCHANGE, "topic", {
+      durable: true,
+      autoDelete: false
+    });
     await channel.assertQueue(process.env.RABBITMQ_QUEUE_ONE, {
       durable: true,
       exclusive: false,
@@ -55,17 +51,17 @@ export class Send implements SendConfigInterface {
     await channel.publish(
       process.env.RABBITMQ_WORKER_EXCHANGE,
       "convert.image.bmp",
-      Buffer.from(message)
+      Buffer.from(message + " convert.image.bmp")
     );
     await channel.publish(
       process.env.RABBITMQ_WORKER_EXCHANGE,
       "convert.bitmap.image",
-      Buffer.from(message)
+      Buffer.from(message + " convert.bitmap.image")
     );
     await channel.publish(
       process.env.RABBITMQ_WORKER_EXCHANGE,
       "image.converted",
-      Buffer.from(message)
+      Buffer.from(message + " image.converted")
     );
     await channel.close();
     await connection.close();
