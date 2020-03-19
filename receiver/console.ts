@@ -1,12 +1,17 @@
 import commander from "commander";
-import { Receive } from "./config/Receive";
+import {Receiver} from "./config/Receiver";
 
 commander.version("beta").description("i receive stuff");
 commander
   .command("receive")
   .alias("r")
   .description("am the receiver")
-  .action(() => {
-    new Receive().receiver().then(r => console.log("closing connection"));
+  .action( async () => {
+      const receive = new Receiver();
+      try {
+          await receive.receiver();
+      } catch (error) {
+          console.log(`[x] Message could not be delivered ${error}`);
+      }
   });
 commander.parse(process.argv);
