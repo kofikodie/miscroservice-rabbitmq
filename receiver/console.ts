@@ -6,7 +6,8 @@ commander
   .command("receive")
   .alias("r")
   .description("am the receiver")
-  .action(() => {
-    new Receive().receiver().then(r => console.log("closing connection"));
+  .action(async () => {
+    await new Receive().receiver();
+    console.log("closing connection");
   });
 commander.parse(process.argv);
