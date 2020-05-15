@@ -1,0 +1,12 @@
+tsconfig.json
+docker**
+pnp.js
+.eslint**
+yarn**
+.yarn**
+.git**
+dist/
+.vscode/
+.docker/
+**.md
+**.pro
