@@ -10,8 +10,6 @@ services:
     build:
       context: .
       dockerfile: .docker/sender/Dockerfile
-    volumes:
-      - "./:/usr/src/sender"
     depends_on:
       - rabbitmq
   reciver:
@@ -19,7 +17,5 @@ services:
     build:
       context: .
       dockerfile: .docker/receiver/Dockerfile
-    volumes:
-      - "./:/usr/src/sender"
     depends_on:
       - rabbitmq
