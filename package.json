@@ -1,40 +1,42 @@
 {
-  "name": "microservice_rabbitmq",
-  "version": "1.0.0",
-  "description": "microservice rabbit mysql",
-  "main": "index.js",
-  "scripts": {
-    "pretty": "prettier --write **/receiver/config/*.ts",
-    "test-dev": "test-npm-dependants commander 4.0.1",
-    "build": "tsc",
-    "send": "ts-node sender/console.ts send hello-info",
-    "consume": "ts-node receiver/console.ts receive",
-    "lint": "eslint . --ext .ts",
-    "lint-fix": "eslint . --fix **/*.ts"
-  },
-  "keywords": [
-    "rabbit",
-    "mysql",
-    "miscroservice"
-  ],
-  "author": "k.kodieaddo@gmail.com",
-  "license": "ISC",
-  "dependencies": {
-    "@yarnpkg/pnpify": "^2.0.0-rc.22",
-    "amqplib": "^0.5.6",
-    "commander": "^5.1.0",
-    "dotenv": "^8.2.0"
-  },
-  "devDependencies": {
-    "@types/amqplib": "^0.5.13",
-    "@types/bluebird": "^3.5.31",
-    "@types/node": "^14.0.1",
-    "@typescript-eslint/eslint-plugin": "^2.33.0",
-    "@typescript-eslint/parser": "^2.33.0",
-    "eslint": "^7.0.0",
-    "prettier": "^2.0.5",
-    "test-npm-dependants": "^1.0.0",
-    "ts-node": "^8.10.1",
-    "typescript": "^3.9.2"
-  }
+    "name": "microservice_rabbitmq",
+    "version": "1.0.0",
+    "description": "microservice rabbit mysql",
+    "main": "index.js",
+    "scripts": {
+        "pretty": "prettier --write **/receiver/config/*.ts",
+        "test-dev": "test-npm-dependants commander 4.0.1",
+        "build": "tsc",
+        "send-dev": "ts-node sender/console.ts send hello-info",
+        "consume-dev": "ts-node receiver/console.ts receive",
+        "send": "node console.js send hello-info",
+        "consume": "node console.js receive",
+        "lint": "eslint . --ext .ts",
+        "lint-fix": "eslint . --fix **/*.ts"
+    },
+    "keywords": [
+        "rabbit",
+        "mysql",
+        "miscroservice"
+    ],
+    "author": "k.kodieaddo@gmail.com",
+    "license": "ISC",
+    "dependencies": {
+        "@yarnpkg/pnpify": "^2.0.0-rc.22",
+        "amqplib": "^0.5.6",
+        "commander": "^5.1.0",
+        "dotenv": "^8.2.0"
+    },
+    "devDependencies": {
+        "@types/amqplib": "^0.5.13",
+        "@types/bluebird": "^3.5.31",
+        "@types/node": "^14.0.1",
+        "@typescript-eslint/eslint-plugin": "^2.33.0",
+        "@typescript-eslint/parser": "^2.33.0",
+        "eslint": "^7.0.0",
+        "prettier": "^2.0.5",
+        "test-npm-dependants": "^1.0.0",
+        "ts-node": "^8.10.1",
+        "typescript": "^3.9.2"
+    }
 }
