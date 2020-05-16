@@ -5,11 +5,14 @@
   "main": "index.js",
   "scripts": {
     "pretty": "prettier --write **/receiver/config/*.ts",
-    "lint": "tslint */*.ts",
     "test-dev": "test-npm-dependants commander 4.0.1",
     "build": "tsc",
-    "send": "ts-node sender/console.ts send hello-rabbitMQ",
-    "consume": "ts-node receiver/console.ts receive"
+    "send-dev": "ts-node sender/console.ts send hello-topic",
+    "consume-dev": "ts-node receiver/console.ts receive",
+    "send": "node console.js send hello-topic",
+    "consume": "node console.js receive",
+    "lint": "eslint . --ext .ts",
+    "lint-fix": "eslint . --fix --ext .ts"
   },
   "keywords": [
     "rabbit",
@@ -26,11 +29,14 @@
   "devDependencies": {
     "@types/amqplib": "^0.5.13",
     "@types/bluebird": "^3.5.29",
+    "@types/eslint": "6.8.1",
     "@types/node": "^12.12.21",
+    "@typescript-eslint/eslint-plugin": "^2.33.0",
+    "@typescript-eslint/parser": "^2.33.0",
+    "eslint": "6.0.0",
     "prettier": "^1.19.1",
     "test-npm-dependants": "^1.0.0",
     "ts-node": "^8.5.4",
-    "tslint": "^6.0.0",
     "typescript": "^3.8.2"
   }
 }
