@@ -5,22 +5,22 @@ require("dotenv").config();
 
 export class Receive implements ReceiverInterface {
   async receiver(): Promise<void> {
-    let connection: Connection = await amqp.connect({
+    const connection: Connection = await amqp.connect({
       protocol: process.env.RABBITMQ_PROTOCOL,
       hostname: process.env.RABBITMQ_HOST,
       port: parseInt(process.env.RABBITMQ_PORT),
       username: process.env.RABBITMQ_USER,
       password: process.env.RABBITMQ_PASSWORD,
-      vhost: process.env.RABBITMQ_VHOST
+      vhost: process.env.RABBITMQ_VHOST,
     });
-    let channel: Channel = await connection.createChannel();
+    const channel: Channel = await connection.createChannel();
     const queueAssert = await channel.assertQueue(
       process.env.RABBITMQ_QUEUE_ONE,
       {
         durable: true,
         exclusive: false,
         autoDelete: false,
-        arguments: null
+        arguments: null,
       }
     );
     await channel.consume(queueAssert.queue, (msg: ConsumeMessage | null) => {

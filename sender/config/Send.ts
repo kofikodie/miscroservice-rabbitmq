@@ -11,7 +11,7 @@ export class Send implements SendConfigInterface {
       port: parseInt(process.env.RABBITMQ_PORT),
       username: process.env.RABBITMQ_USER,
       password: process.env.RABBITMQ_PASSWORD,
-      vhost: process.env.RABBITMQ_VHOST
+      vhost: process.env.RABBITMQ_VHOST,
     });
     const channel: Channel = await connection.createChannel();
     await channel.assertExchange(
@@ -20,14 +20,14 @@ export class Send implements SendConfigInterface {
       {
         durable: true,
         autoDelete: false,
-        arguments: null
+        arguments: null,
       }
     );
     await channel.assertQueue(process.env.RABBITMQ_QUEUE_ONE, {
       durable: true,
       exclusive: false,
       autoDelete: false,
-      arguments: null
+      arguments: null,
     });
     await channel.bindQueue(
       process.env.RABBITMQ_QUEUE_ONE,
@@ -38,14 +38,14 @@ export class Send implements SendConfigInterface {
       process.env.RABBITMQ_QUEUE_ONE,
       Buffer.from(message),
       {
-        persistent: true
+        persistent: true,
       }
     );
     await channel.sendToQueue(
       process.env.RABBITMQ_QUEUE_SEC,
       Buffer.from(message),
       {
-        persistent: true
+        persistent: true,
       }
     );
     await channel.close();
