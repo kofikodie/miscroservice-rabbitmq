@@ -1,3 +1,3 @@
 export interface SendConfigInterface {
-  publisher(message?: string): Promise<void>;
+    publisher(message?: string): Promise<void>;
 }

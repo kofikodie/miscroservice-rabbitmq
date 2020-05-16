@@ -4,8 +4,8 @@
   "description": "microservice rabbit mysql",
   "main": "index.js",
   "scripts": {
-    "pretty": "prettier --check {**/*.ts, **/**/*.ts}",
-    "pretty-fix": "prettier --write {**/*.ts, **/**/*.ts}",
+    "pretty": "prettier --check {*.ts,**/*.ts,**/**}",
+    "pretty-fix": "prettier --write {*.ts,**/*.ts,**/**}",
     "test-dev": "test-npm-dependants commander 4.0.1",
     "build": "tsc",
     "send-dev": "ts-node sender/console.ts send hello-fanout",
@@ -34,7 +34,7 @@
     "@typescript-eslint/eslint-plugin": "^2.33.0",
     "@typescript-eslint/parser": "^2.33.0",
     "eslint": "6.0.0",
-    "prettier": "^1.19.1",
+    "prettier": "^2.0.5",
     "test-npm-dependants": "^1.0.0",
     "ts-node": "^8.5.4",
     "typescript": "^3.8.2"

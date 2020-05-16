@@ -1,3 +1,3 @@
 export interface ReceiverInterface {
-  receiver(): Promise<void>;
+    receiver(): Promise<void>;
 }
