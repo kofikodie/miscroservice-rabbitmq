@@ -1,6 +1,6 @@
 import { SendConfigInterface } from './SenderInterface';
 import amqp, { Channel, Connection } from 'amqplib';
-import Env from './EnvRabbit';
+import Env from '../../EnvRabbit';
 
 export class Send implements SendConfigInterface {
     async publisher(message: string): Promise<void> {
