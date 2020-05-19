@@ -5,3 +5,10 @@ services:
     ports:
       - "5672:5672"
       - "15672:15672"
+  sender:
+    image: sender:v1
+    build:
+      context: .
+      dockerfile: .docker/sender/Dockerfile
+    depends_on:
+      - rabbitmq
