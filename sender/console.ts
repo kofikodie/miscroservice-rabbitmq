@@ -1,6 +1,6 @@
 import commander from 'commander';
 import dotenv from 'dotenv';
-import { Send } from './config/Send';
+import { Send } from './Send';
 
 dotenv.config();
 

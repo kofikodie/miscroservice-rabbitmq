@@ -1,8 +1,8 @@
-import { SendConfigInterface } from './SenderInterface';
 import amqp, { Channel, Connection } from 'amqplib';
-import Env from '../../EnvRabbit';
+import Env from '../EnvRabbit';
+import { RabbitInterface } from '../config/RabbitInterface';
 
-export class Send implements SendConfigInterface {
+export class Send implements RabbitInterface {
     async publisher(message: string): Promise<void> {
         const connection: Connection = await amqp.connect({
             protocol: Env.PROTOCOL,
