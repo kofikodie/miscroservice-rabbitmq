@@ -6,9 +6,16 @@ services:
       - "5672:5672"
       - "15672:15672"
   sender:
-    image: sender:v1
+    image: sender:headers
     build:
       context: .
       dockerfile: .docker/sender/Dockerfile
+    depends_on:
+      - rabbitmq
+  receiver:
+    image: receiver:headers
+    build:
+      context: .
+      dockerfile: .docker/receiver/Dockerfile
     depends_on:
       - rabbitmq
