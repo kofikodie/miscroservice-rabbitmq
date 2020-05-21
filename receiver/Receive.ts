@@ -15,7 +15,11 @@ export class Receive implements RabbitInterface {
 
         const channel: Channel = await connection.createChannel();
         await channel.consume(Env.QUEUE_ONE, (msg: ConsumeMessage | null) => {
-            console.log(' [x] Received %s', msg.content.toString());
+            console.log(' [x] Received first queue %s', msg.content.toString());
+            channel.ack(msg, false);
+        });
+        await channel.consume(Env.QUEUE_SEC, (msg: ConsumeMessage | null) => {
+            console.log(' [x] Received second queue %s', msg.content.toString());
             channel.ack(msg, false);
         });
         await channel.close();
