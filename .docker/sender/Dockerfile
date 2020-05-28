@@ -1,4 +1,4 @@
-FROM node:14.0.0-alpine3.10
+FROM node:14.3.0-alpine3.10
 WORKDIR /usr/src/sender
 ADD package.prod.json /usr/src/sender/package.json
 RUN yarn set version berry
